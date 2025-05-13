@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 - Breinrot Verdwaald</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+    body {
+      margin: 0;
+      background-color: #0d0d0d;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      background-image: radial-gradient(#1a1a1a 1px, transparent 1px);
+      background-size: 22px 22px;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 6rem;
+      margin: 0;
+      color: #ff004c;
+      text-shadow: 2px 2px #00fff7;
+      animation: glitch 1.5s infinite;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin: 10px 0 20px;
+      color: #ffb6c1;
+    }
+
+    p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      color: #ccc;
+      margin-bottom: 30px;
+    }
+
+    img {
+      width: 300px;
+      max-width: 90%;
+      margin-bottom: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(255, 0, 76, 0.5);
+    }
+
+    button {
+      background-color: #ff004c;
+      color: white;
+      padding: 15px 30px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 3px 3px 0 #730030;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes glitch {
+      0% { text-shadow: 2px 2px #ff004c, -2px -2px #00fff7; }
+      25% { text-shadow: -2px -2px #ff004c, 2px 2px #00fff7; }
+      50% { text-shadow: 2px -2px #00fff7, -2px 2px #ff004c; }
+      75% { text-shadow: -2px 2px #ff004c, 2px -2px #00fff7; }
+      100% { text-shadow: 2px 2px #ff004c, -2px -2px #00fff7; }
+    }
+  </style>
+</head>
+<body>
+  <h1>404</h1>
+  <h2>Je brein is verdwaald...</h2>
+  <img src="https://github.com/lucasenlucas/brainrot-verhalen/blob/main/assets/Scherm%C2%ADafbeelding%202025-05-13%20om%2020.16.13.png?raw=true" alt="Brainrot Afbeelding">
+  <p>Deze pagina bestaat niet. Misschien heb je te diep in de brainrot gezeten? 🧠💀</p>
+  <button onclick="window.location.href='index.html'">🡐 Terug naar de homepage</button>
+</body>
+</html>
