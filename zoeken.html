@@ -192,4 +192,67 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    const zoekveld = document.getElementById("zoek
+    const zoekveld = document.getElementById("zoekveld");
+    const resultaten = document.getElementById("resultaten");
+
+    const popupContainer = document.getElementById("popup-container");
+    const popupAfbeelding = document.getElementById("popup-afbeelding");
+    const popupTitel = document.getElementById("popup-titel");
+    const popupAuteur = document.getElementById("popup-auteur");
+    const popupVerhaal = document.getElementById("popup-verhaal");
+
+    let alleVerhalen = [];
+
+    function toonPopup(verhaal) {
+      popupAfbeelding.src = verhaal.afbeelding;
+      popupTitel.textContent = verhaal.titel;
+      popupAuteur.textContent = "Door: " + verhaal.auteur;
+      popupVerhaal.textContent = verhaal.verhaal;
+      popupContainer.classList.add("active");
+    }
+
+    zoekveld.addEventListener("input", () => {
+      const zoekterm = zoekveld.value.toLowerCase();
+      const gefilterd = alleVerhalen.filter(v =>
+        v.titel.toLowerCase().includes(zoekterm) ||
+        v.samenvatting.toLowerCase().includes(zoekterm)
+      );
+
+      resultaten.innerHTML = "";
+
+      if (zoekterm.trim() === "") {
+        resultaten.innerHTML = "<p>Typ iets in het zoekveld om verhalen te vinden...</p>";
+        return;
+      }
+
+      if (gefilterd.length === 0) {
+        resultaten.innerHTML = "<p>Geen resultaten gevonden.</p>";
+        return;
+      }
+
+      gefilterd.forEach(verhaal => {
+        const div = document.createElement("div");
+        div.className = "resultaat";
+        div.innerHTML = `
+          <img src="${verhaal.afbeelding}" />
+          <div class="resultaat-content">
+            <h2>${verhaal.titel}</h2>
+            <p>${verhaal.samenvatting}</p>
+          </div>
+        `;
+        div.onclick = () => toonPopup(verhaal);
+        resultaten.appendChild(div);
+      });
+    });
+
+    async function laadVerhalen() {
+      const snap = await getDocs(collection(db, "verhalen"));
+      snap.forEach(doc => {
+        alleVerhalen.push({ id: doc.id, ...doc.data() });
+      });
+    }
+
+    laadVerhalen();
+  </script>
+</body>
+</html>
